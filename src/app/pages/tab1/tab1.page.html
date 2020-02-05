@@ -1,11 +1,25 @@
 <ion-header no-border>
-    <ion-toolbar>
+    <ion-toolbar color="dark">
         <ion-title>
             Pendientes
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <h1 align="center">Hola mundo!!</h1>
+<ion-content color="dark">
+    <ion-list color="dark">
+        <!--Se define un ngFor donde se asigna un nombre, se define el nombre del servicio y de la lista-->
+        <ion-item *ngFor="let lista of deseosService.lista" detail color="dark">
+            <!--Solo se invoca la lista que creamos y el titulo ya que el titulo lo estamos pidiendo como parametro en el construcctor-->
+            <ion-label>{{lista.titulo}}</ion-label>
+        </ion-item>
+    </ion-list>
+    <!--Se define la orientacion que va tener el boton y le definimos que escuche el click para hacer la accion especificada en la clase referente-->
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="agregarLista()">
+        <!--Se define el color que tendra el boton-->
+        <ion-fab-button color="tertiary">
+            <!--Se define el icono que tendra el boton-->
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 </ion-content>

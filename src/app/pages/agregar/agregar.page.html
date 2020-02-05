@@ -1,0 +1,41 @@
+<!--Con el om bordes le quitamos el borre o marco que tiene el header de la app-->
+<ion-header no-border>
+    <!--Pintamos el toolbar o header de un color especifico-->
+    <ion-toolbar color="dark">
+        <!--Invocamos los diferentes tipos de botones que se pueden colocar en el header de Ionic, en este caso lo posionamos del lado ddel titulo-->
+        <ion-buttons slot="start">
+            <!--Se define el tipo de boton, en este caso es de retroceso y se le define una ruta por defecto-->
+            <ion-back-button defaultHref="/" color="tertiary"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Nombre de la lista</ion-title>
+    </ion-toolbar>
+</ion-header>
+<!--Pintamos el content color especifico-->
+<ion-content color="dark">
+    <!--Es preferente poner los iputs dentro de un IonList Ya que si hubiera muchos elementos en la lista por defecto se puede hacer Scroll-->
+    <ion-list>
+        <ion-item color="dark">
+            <!--Se define el tipo de input -->
+            <ion-label position="floating">Nuevo Item</ion-label>
+            <!--Se define el tipo de caja de texto para ver que valores de entrada puede recibir como solo numeros o solo letras-->
+            <ion-input type="text"></ion-input>
+        </ion-item>
+    </ion-list>
+    <!--creamos una nueva lista-->
+    <ion-list>
+        <!--creamos un header para poner un titulo-->
+        <ion-list-header color="dark">
+            <!--le damos el nombre a el header-->
+            <ion-label>
+                Tareas por hacer
+            </ion-label>
+        </ion-list-header>
+        <!--creamos un nuevo item en el cual ira el checkbox-->
+        <ion-item color="dark">
+            <!--definimos el checkbox-->
+            <ion-checkbox color="tertiary" slot="start">Simona</ion-checkbox>
+            <!--agregamos la etiqueta a el check box-->
+            <ion-label>Pasear al perro</ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

@@ -30,6 +30,12 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+          },
+          {
+            // Este path se genera en el archivo app-routing.module.ts, de ahi se quite y se agrega aqui como una ruta hija
+            path: 'agregar/:listaId',
+           loadChildren: () =>
+           import('../agregar/agregar.module').then( m => m.AgregarPageModule)
           }
         ]
       },

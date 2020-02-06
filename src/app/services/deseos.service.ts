@@ -6,7 +6,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   providedIn: 'root'
 })
 export class DeseosService {
-
+// se define una lista como un array vacio
   lista: Lista[] = [];
 
   constructor() {
@@ -19,16 +19,27 @@ export class DeseosService {
 
     this.CargarStorage();
    }
+   // Creamos una funcion para crear una lista cual pedira como parametro un titulo
    CrearLista(Titulo: string) {
+   // definimos unas constante llmada lista la cual sera igual a una lista de tipo lista la cual recibe como parametro un titulo
     const lista = new Lista(Titulo);
+   // invocamos la lista y le agregamos la propiedad push, push añade uno o más elementos al final de un array y devuelve la nueva longitud del array.
     this.lista.push(lista);
+  // invocamos la funcion de guardarStorage para que se almacene
     this.GuardaStorage();
-
+  // retornamos la lista con el id
     return lista.id;
    }
+   borrarLista(lista: Lista) {
+    this.lista = this.lista.filter(listaData => listaData.id !== lista.id);
+    this.GuardaStorage();
+  }
 
+  // definimos una funcion de ObtenerLista la cual recibira como parametro un Id de tipo String o Number
    ObtenerLista(id: string | number) {
+     // hacemos que el id pase a ser de tipo number
       id = Number(id);
+      // retornamos la lista y comparamos que el id sea igual al id que recibe
       return this.lista.find(listaData => listaData.id === id);
    }
 // Funcion para guardar la informacion en el local storage
@@ -47,5 +58,7 @@ export class DeseosService {
           this.lista = [];
      }
    }
+
+
 
 }

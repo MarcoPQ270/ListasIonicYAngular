@@ -1,0 +1,30 @@
+<ion-list color="dark">
+    <ion-item-sliding *ngFor="let lista of deseosService.lista | filtrocompletado: terminada">
+        <!--Se define un ngFor donde se asigna un nombre, se define el nombre del servicio y de la lista-->
+        <ion-item detail color="dark" (click)="ListaSeleccionada(lista)">
+            <!--Solo se invoca la lista que creamos y el titulo ya que el titulo lo estamos pidiendo como parametro en el construcctor-->
+            <ion-label>{{lista.titulo}}</ion-label>
+            <ion-note slot="end" color="tertiary">Items {{lista.items.length}}</ion-note>
+        </ion-item>
+        <ion-item-options side="end">
+            <ion-item-option (click)="borrarLista(lista)" color="danger" expandable>
+                Eliminar
+                <ion-icon name="trash"></ion-icon>
+            </ion-item-option>
+
+
+
+        </ion-item-options>
+        <ion-item-options side="start">
+
+            <ion-item-option (click)="editarLista(lista)" color="primary" expandable>
+                <ion-icon name="create"></ion-icon>
+                Editar
+
+            </ion-item-option>
+
+
+
+        </ion-item-options>
+    </ion-item-sliding>
+</ion-list>

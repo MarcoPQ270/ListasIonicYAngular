@@ -3,6 +3,7 @@ import { DeseosService } from '../../services/deseos.service';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -10,8 +11,8 @@ import { AlertController } from '@ionic/angular';
 })
 export class Tab1Page {
 // Inyectamos en el constructor los servicios que vayamos a usar en la app
-// DeseosService es el que nososotros creamos
-// Router nos ayuda a movernos entre paginas
+// DeseosService es el servicio que nososotros creamos
+// Router nos ayuda a movernos entre paginas o pantallas
 // Alert controller nos muestra una ventana de alerta
   constructor(public deseosService: DeseosService,
               private router: Router,
@@ -53,6 +54,7 @@ export class Tab1Page {
               }
               // Se crea la lista que viene desde el servicio con la data y el titulo asignado
             const listaId = this.deseosService.CrearLista(data.Titulo);
+            // se hace la redireccion con el id de la lista
             this.router.navigateByUrl(`/tabs/tab1/agregar/${listaId}`);
             }
           }

@@ -7,7 +7,7 @@
             <!--Se define el tipo de boton, en este caso es de retroceso y se le define una ruta por defecto-->
             <ion-back-button defaultHref="/" color="tertiary"></ion-back-button>
         </ion-buttons>
-        <ion-title>Nombre de la lista</ion-title>
+        <ion-title>{{lista.titulo}}</ion-title>
     </ion-toolbar>
 </ion-header>
 <!--Pintamos el content color especifico-->
@@ -18,24 +18,53 @@
             <!--Se define el tipo de input -->
             <ion-label position="floating">Nuevo Item</ion-label>
             <!--Se define el tipo de caja de texto para ver que valores de entrada puede recibir como solo numeros o solo letras-->
-            <ion-input type="text"></ion-input>
+            <ion-input type="text" [(ngModel)]="nombreItem" (keyup.enter)="agregarItem()"></ion-input>
         </ion-item>
+
     </ion-list>
     <!--creamos una nueva lista-->
     <ion-list>
         <!--creamos un header para poner un titulo-->
         <ion-list-header color="dark">
             <!--le damos el nombre a el header-->
-            <ion-label>
+            <ion-fab vertical="bottom" horizontal="end" slot="fixed"></ion-fab>
+            <ion-label *ngIf="lista.items.length > 0">
                 Tareas por hacer
             </ion-label>
         </ion-list-header>
-        <!--creamos un nuevo item en el cual ira el checkbox-->
-        <ion-item color="dark">
-            <!--definimos el checkbox-->
-            <ion-checkbox color="tertiary" slot="start">Simona</ion-checkbox>
-            <!--agregamos la etiqueta a el check box-->
-            <ion-label>Pasear al perro</ion-label>
-        </ion-item>
+
+
+        <ion-item-sliding *ngFor="let item of lista.items; let i = index" class="animated fadeInDown">
+
+            <!--creamos un nuevo item en el cual ira el checkbox-->
+            <ion-item color="dark">
+                <!--definimos el checkbox y agregamos el ngModel que emite y escucha un evento-->
+                <ion-checkbox color="tertiary" slot="start" [(ngModel)]="item.completado" (ionChange)="CambioCheck(item)">Simona</ion-checkbox>
+                <!--agregamos la etiqueta a el check box-->
+                <ion-label>{{item.desc}}</ion-label>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option (click)="borrar(i)" color="danger" expandable>
+                    Eliminar
+                    <ion-icon name="trash"></ion-icon>
+                </ion-item-option>
+
+            </ion-item-options>
+            <!-- <ion-item-options side="start">
+                <ion-item-option color="primary" expandable>
+                    <ion-icon name="create"></ion-icon>
+                    Editar
+
+                </ion-item-option>
+
+            </ion-item-options> -->
+        </ion-item-sliding>
     </ion-list>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="agregarItem()">
+        <!--Se define el color que tendra el boton-->
+        <ion-fab-button color="tertiary">
+            <!--Se define el icono que tendra el boton-->
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 </ion-content>
